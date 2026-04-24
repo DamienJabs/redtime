@@ -29,7 +29,8 @@ def time(time: bool = typer.Option(False, "--previous", help="Show time for this
 
 @app.command("add")
 def add(ticket: str = typer.Argument(..., help="Ticket to add time for"), 
-        time: float = typer.Argument(..., help="Time in hours to add")):
+        time: float = typer.Argument(..., help="Time in hours to add"),
+        spent_on: str = typer.Argument(..., help="Date when time was spent (YYYY-MM-DD)")):
     print("add time...")
 
 @app.command("close")
