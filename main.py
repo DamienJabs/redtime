@@ -3,6 +3,7 @@ import os
 from commands.list_tickets import list_tickets
 from commands.list_project_tickets import list_project_tickets
 from commands.show_time import show_time
+from datetime import datetime
 
 app = typer.Typer()
 
@@ -30,7 +31,7 @@ def time(time: bool = typer.Option(False, "--previous", help="Show time for this
 @app.command("add")
 def add(ticket: str = typer.Argument(..., help="Ticket to add time for"), 
         time: float = typer.Argument(..., help="Time in hours to add"),
-        spent_on: str = typer.Argument(..., help="Date when time was spent (YYYY-MM-DD)")):
+        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date when time was spent (YYYY-MM-DD)")):
     print("add time...")
 
 @app.command("close")
