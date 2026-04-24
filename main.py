@@ -32,5 +32,10 @@ def add(ticket: str = typer.Argument(..., help="Ticket to add time for"),
         time: float = typer.Argument(..., help="Time in hours to add")):
     print("add time...")
 
+@app.command("close")
+def close(ticket: str = typer.Argument(..., help="Ticket to close"),
+          bdpc: bool = typer.Argument(..., help="Close ticket with BDPC status")):
+    print("close ticket...")
+
 if __name__ == '__main__':
   app()
