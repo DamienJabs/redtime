@@ -20,7 +20,7 @@ Set the following environment variables:
 ```bash
 export REDMINE_URL=https://your-redmine-instance.com
 export REDMINE_API_KEY=your_api_key
-export REDMINE_PROJECT_ID=your_project_id
+export REDMINE_PROJECT=your_project_id
 ```
 
 ## Commands
@@ -39,8 +39,8 @@ python main.py list closed   # closed tickets
 List all open tickets for a project.
 
 ```bash
-python main.py project                        # uses REDMINE_PROJECT_ID
-python main.py project --project-id 42        # override project
+python main.py project                              # uses REDMINE_PROJECT
+python main.py project --project my-project         # override project
 ```
 
 ### `time`
