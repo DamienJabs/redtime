@@ -9,6 +9,8 @@ def redmine_request(redmine_url, redmine_api_key, endpoint, method="GET", data=N
             response = requests.get(url, headers=headers)
         elif method == "POST":
             response = requests.post(url, headers=headers, json=data)
+        elif method == "PUT":
+            response = requests.put(url, headers=headers, json=data)
         else:
             raise ValueError("Unsupported HTTP method")
         response.raise_for_status()
