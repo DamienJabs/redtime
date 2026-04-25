@@ -3,6 +3,7 @@ import os
 from commands.list_tickets import list_tickets
 from commands.list_project_tickets import list_project_tickets
 from commands.show_time import show_time
+from commands.add_time import add_time_ticket
 from datetime import datetime
 
 app = typer.Typer()
@@ -29,15 +30,20 @@ def time(time: bool = typer.Option(False, "--previous", help="Show time for this
     show_time(redmine_url, redmine_api_key, time)
 
 @app.command("add")
-def add(ticket: str = typer.Argument(..., help="Ticket to add time for"), 
-        time: float = typer.Argument(..., help="Time in hours to add"),
-        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date when time was spent (YYYY-MM-DD)")):
-    print("add time...")
+def add_time(ticket: str = typer.Argument(..., help="Ticket (id) to add time for"), 
+        time: int = typer.Argument(..., help="Time in hours to add"),
+        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date when time was spent (DD-MM)")):
+    add_time_ticket(redmine_url, redmine_api_key, ticket, time, spent_on)
 
-@app.command("close")
-def close(ticket: str = typer.Argument(..., help="Ticket to close"),
-          bdpc: bool = typer.Argument(..., help="Close ticket with BDPC status")):
-    print("close ticket...")
+@app.command("off")
+def add_day_off(time: int = typer.Argument(..., help="Time in hours to add"),
+        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date when time was spent (DD-MM)")):
+    add_time_ticket(redmine_url, redmine_api_key, "1", time, spent_on)
+
+# @app.command("close")
+# def close_ticket(ticket: str = typer.Argument(..., help="Ticket to close"),
+#           bdpc: bool = typer.Argument(..., help="Close ticket with BDPC status")):
+#     print("close ticket...")
 
 if __name__ == '__main__':
   app()
