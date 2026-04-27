@@ -1,5 +1,6 @@
 from .redmine_request import redmine_request
 from datetime import datetime
+from rich.console import Console
 
 def add_time_ticket(redmine_url, redmine_api_key, ticket, time, spent_on):
         if len(spent_on) == 5 and spent_on[2] == "-":
@@ -18,4 +19,4 @@ def add_time_ticket(redmine_url, redmine_api_key, ticket, time, spent_on):
         ticket_info = redmine_request(redmine_url, redmine_api_key, f"issues.json?issue_id={ticket}").json()
         ticket_name = ticket_info["issues"][0]["subject"]
         ticket_spent_time = ticket_info["issues"][0]["spent_hours"]
-        print(f"Adding {time}h to ticket {ticket} on {spent_on} - {ticket_name} (time spent: {ticket_spent_time}h)")
+        Console().print(f"Added [green]{time}h[/green] to ticket [blue]{ticket}[/blue] on [yellow]{spent_on}[/yellow] - {ticket_name} (total: [cyan]{ticket_spent_time}h[/cyan])")
