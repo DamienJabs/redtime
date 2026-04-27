@@ -4,8 +4,8 @@ from .redmine_request import redmine_request
 from zoneinfo import ZoneInfo
 from datetime import datetime, timedelta
 
-def list_tickets(redmine_url, redmine_api_key, redmine_project_id, status):
-    lists = redmine_request(redmine_url, redmine_api_key, f"issues.json?project_id={redmine_project_id}&assigned_to_id=me&status_id={status}").json()
+def list_tickets(redmine_url, redmine_api_key, status):
+    lists = redmine_request(redmine_url, redmine_api_key, f"issues.json?assigned_to_id=me&status_id={status}").json()
     tz = ZoneInfo("Europe/Paris")
     now_date = datetime.now(tz).date()
     console = Console()

@@ -20,7 +20,7 @@ if not redmine_api_key or not redmine_project or not redmine_url:
 @app.command("list")
 def list(status: str = typer.Argument("open", help="Ticket status filter: 'open' (default) or 'closed'")):
     """List your assigned tickets."""
-    list_tickets(redmine_url, redmine_api_key, redmine_project, status)
+    list_tickets(redmine_url, redmine_api_key, status)
 
 
 @app.command("project")
