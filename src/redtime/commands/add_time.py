@@ -14,7 +14,7 @@ def add_time_ticket(redmine_url, redmine_api_key, ticket, time, spent_on):
         else:
             print("Invalid date format. Please use DD-MM.")
             exit(1)
-        redmine_request(redmine_url, redmine_api_key, "time_entries.json", method="POST", data={"time_entry": {"issue_id": ticket, "hours": time, "spent_on": spent_on}}).json()
+        redmine_request(redmine_url, redmine_api_key, "time_entries.json", method="POST", data={"issue_id": ticket, "time_entry": {"hours": time, "spent_on": spent_on}}).json()
 
         ticket_info = redmine_request(redmine_url, redmine_api_key, f"issues.json?issue_id={ticket}").json()
         ticket_name = ticket_info["issues"][0]["subject"]
