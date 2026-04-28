@@ -5,6 +5,7 @@ from commands.list_project_tickets import list_project_tickets
 from commands.show_time import show_time
 from commands.add_time import add_time_ticket
 from commands.close_ticket_id import close_ticket_id
+from commands.reopen_ticket import reopen_ticket
 from datetime import datetime
 
 app = typer.Typer()
@@ -54,6 +55,11 @@ def close_ticket(ticket: str = typer.Argument(..., help="Ticket ID to close"),
         print("You cannot close this ticket")
         exit(1)
     close_ticket_id(redmine_url, redmine_api_key, ticket, bdpc)
+
+@app.command("reopen")
+def reopen_ticket_cmd(ticket: str = typer.Argument(..., help="Ticket ID to reopen")):
+    """Reopen a closed ticket and set it to Do."""
+    reopen_ticket(redmine_url, redmine_api_key, ticket)
 
 if __name__ == '__main__':
   app()
