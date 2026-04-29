@@ -37,13 +37,13 @@ def time(time: bool = typer.Option(False, "--previous", help="Show previous mont
 @app.command("add")
 def add_time(ticket: str = typer.Argument(..., help="Ticket ID to log time on"),
         time: int = typer.Argument(..., help="Number of hours to log"),
-        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date in DD-MM format (default: today)")):
+        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date in DD-MM or DD-MM-YYYY format (default: today)")):
     """Log time on a ticket."""
     add_time_ticket(redmine_url, redmine_api_key, ticket, time, spent_on)
 
 @app.command("off")
 def add_day_off(time: int = typer.Argument(..., help="Number of hours to log as absence"),
-        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date in DD-MM format (default: today)")):
+        spent_on: str = typer.Option(datetime.now().strftime("%Y-%m-%d"), help="Date in DD-MM or DD-MM-YYYY format (default: today)")):
     """Log absence time."""
     add_time_ticket(redmine_url, redmine_api_key, "1", time, spent_on)
 
